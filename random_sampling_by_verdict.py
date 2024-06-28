@@ -1,10 +1,13 @@
 import json
-import os as os
+import os
 import pandas as pd
 import numpy as np
 
 # Get the path to the user's Documents directory
 documents_path = os.path.expanduser('~/Documents/FC_CODE/Kaggle')
+
+# Get the current working directory
+current_directory = os.getcwd()
 
 
 file_name = 'politifact_factcheck_data.json'
@@ -31,6 +34,5 @@ print(df.head())
 np.random.seed(0)
 sampled_df = df.groupby('verdict').apply(lambda x: x.sample(1000)).reset_index(drop=True)
 
-verdict_counts = sampled_df['verdict'].value_counts().reset_index()
-verdict_counts.columns = ['verdict', 'count']
-print(verdict_counts)
+new_file = os.path.join(current_directory, 'data/politifact_factcheck_data_sampled.json')
+sampled_df.to_json(new_file, orient="records", lines=True)
