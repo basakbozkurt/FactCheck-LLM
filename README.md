@@ -1,6 +1,7 @@
 # FactCheck-LLM
 This repository contains the performance results of different LLMs on fact-checking tasks.
 
+This document outlines the step-by-step instructions required to run Ollama.
 ## Download Ollama
 
 If you are using linux
@@ -8,7 +9,7 @@ If you are using linux
     curl -L https://ollama.com/download/ollama-linux-amd64 -o ollama
     chmod +x ollama
 
-you may need to run command for ollama commands linux
+On Linux, you may need to run commands as follows:
     
     ./ollama
 
@@ -17,6 +18,8 @@ Or check Mac App or Windows app on: https://ollama.com/download/
 ## Download Models
 
 Check from this libray: https://ollama.com/library
+
+To download models, use the following commands:
 
     ollama pull gemma2:9b
     ollama pull gemma2:27b
@@ -44,16 +47,22 @@ On linux:
     
     ollama serve
 
-After
-    
-    # generate predictions 
     python main.py gemma2:9b
 
-output will be in data folder.
+The output will be saved in the data folder.
 
-    # how many completed
+ ## Check Output
+
+To see how many predictions were completed:
+
     wc -l data/results_gemma2:9b.json
 
-    # realtime watch
+For real-time monitoring:
+
     tail -f data/results*.json 
-    
+
+
+
+
+
+
