@@ -25,8 +25,10 @@ Check from this libray: https://ollama.com/library
     ollama pull mistral:7b
     ollama pull llama3:8b
     ollama pull llama3:70b
-    ollama pull qwen2:72b
     ollama pull qwen2:7b
+    ollama pull qwen2:72b
+    ollama pull phi3:3.8b
+    ollama pull phi3:14b
 
 Note: You may need to run as ./ollama pull gemma2:9b on Linux
 
