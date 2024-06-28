@@ -1,6 +1,7 @@
 import json
-import os
-import pandas
+import os as os
+import pandas as pd
+import numpy as np
 
 # Get the path to the user's Documents directory
 documents_path = os.path.expanduser('~/Documents/FC_CODE/Kaggle')
@@ -22,10 +23,14 @@ with open(file_path, 'r') as file:
             print(f"Error decoding JSON: {e}")
 print(len(data))
 
-df = pandas.DataFrame(data)
+df = pd.DataFrame(data)
 
 print(df.head())
 
+#Randomly select 1,000 statements from each verdict type and create a subset:
+np.random.seed(0)
+sampled_df = df.groupby('verdict').apply(lambda x: x.sample(1000)).reset_index(drop=True)
 
-
-
+verdict_counts = sampled_df['verdict'].value_counts().reset_index()
+verdict_counts.columns = ['verdict', 'count']
+print(verdict_counts)
