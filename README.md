@@ -1,13 +1,16 @@
 # FactCheck-LLM
 This repository contains the performance results of different LLMs on fact-checking tasks.
 
-
 ## Download Ollama
 
 If you are using linux
 
     curl -L https://ollama.com/download/ollama-linux-amd64 -o ollama
     chmod +x ollama
+
+you may need to run command for ollama commands linux
+    
+    ./ollama
 
 Or check Mac App or Windows app on: https://ollama.com/download/
 
@@ -25,12 +28,15 @@ Check from this libray: https://ollama.com/library
     ollama pull qwen2:72b
     ollama pull qwen2:7b
 
-
+Note: You may need to run as ./ollama pull gemma2:9b on Linux
 
 
 # Generate predictions 
-Before starting run ollama server: 
-On Mac: run ollama app from applications
+Before starting run ollama server:
+
+On Mac: 
+
+    run ollama app from applications
 
 On linux:
     
