@@ -62,6 +62,12 @@ For real-time monitoring:
     tail -f data/results*.json 
 
 
+## Generate Metrics
+
+To generate accuracy and F1 scores:
+
+    python score_generator.py gemma2:9b
+
 
 
 
