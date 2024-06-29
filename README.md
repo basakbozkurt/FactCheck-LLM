@@ -47,7 +47,19 @@ On linux:
     
     ollama serve
 
+To generate predictions:
+
     python main.py gemma2:9b
+    python main.py gemma2:27b
+    python main.py mixtral:8x7b
+    python main.py mixtral:8x22b
+    python main.py mistral:7b
+    python main.py llama3:8b
+    python main.py llama3:70b
+    python main.py qwen2:7b
+    python main.py qwen2:72b
+    python main.py phi3:3.8b
+    python main.py phi3:14b
 
 The output will be saved in the data folder.
 
