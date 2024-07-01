@@ -5,6 +5,7 @@ This document outlines the step-by-step instructions required to run Ollama and 
 
 #Instructions for Running Ollama
  Follow the installation instructions provided to set it up on your machine.
+
 ## Download Ollama
 
 If you are using Linux:
