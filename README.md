@@ -1,10 +1,13 @@
 # FactCheck-LLM
 This repository contains the performance results of different LLMs on fact-checking tasks.
 
-This document outlines the step-by-step instructions required to run Ollama.
+This document outlines the step-by-step instructions required to run Ollama and includes the code for measuring performance of different LLMs on fact-checking tasks.
+
+#Instructions for Running Ollama
+
 ## Download Ollama
 
-If you are using linux
+If you are using Linux:
 
     curl -L https://ollama.com/download/ollama-linux-amd64 -o ollama
     chmod +x ollama
@@ -16,8 +19,6 @@ On Linux, you may need to run commands as follows:
 Or check Mac App or Windows app on: https://ollama.com/download/
 
 ## Download Models
-
-Check from this libray: https://ollama.com/library
 
 To download models, use the following commands:
 
@@ -35,6 +36,7 @@ To download models, use the following commands:
 
 Note: You may need to run as ./ollama pull gemma2:9b on Linux
 
+For more info on models, see this library: https://ollama.com/library.
 
 # Generate predictions 
 Before starting run ollama server:
@@ -74,7 +76,7 @@ For real-time monitoring:
     tail -f data/results*.json 
 
 
-## Generate Metrics
+# Generate Metrics
 
 To generate accuracy and F1 scores:
 
