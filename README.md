@@ -4,7 +4,7 @@ This repository contains the performance results of different LLMs on fact-check
 This document outlines the step-by-step instructions required to run Ollama and includes the code for measuring performance of different LLMs on fact-checking tasks.
 
 #Instructions for Running Ollama
-
+ Follow the installation instructions provided to set it up on your machine.
 ## Download Ollama
 
 If you are using Linux:
