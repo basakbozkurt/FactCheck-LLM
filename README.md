@@ -45,7 +45,7 @@ On Mac:
 
     run ollama app from applications
 
-On linux:
+On Linux:
     
     ollama serve
 
