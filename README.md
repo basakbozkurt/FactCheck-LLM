@@ -1,7 +1,7 @@
 # FactCheck-LLM
 This repository contains the performance results of different LLMs on fact-checking tasks.
 
-You can view the results in the [metrics_graph.ipynb](https://github.com/basakbozkurt/FactCheck-LLM/blob/main/metrics_graph.ipynb) notebook.
+You can see the results in the [metrics_graph.ipynb](https://github.com/basakbozkurt/FactCheck-LLM/blob/main/metrics_graph.ipynb) notebook.
 
 This document outlines the step-by-step instructions required to run Ollama and includes the code for measuring performance of different LLMs on fact-checking tasks.
 
