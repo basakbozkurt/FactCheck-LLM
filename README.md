@@ -35,7 +35,7 @@ To download models, use the following commands:
     ollama pull qwen2:7b
     ollama pull qwen2:72b
     ollama pull phi3:3.8b
-    ollama pull phi3:14b
+    ollama pull 
 
 Note: You may need to run as ./ollama pull gemma2:9b on Linux
 
