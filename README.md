@@ -35,7 +35,9 @@ To download models, use the following commands:
     ollama pull qwen2:7b
     ollama pull qwen2:72b
     ollama pull phi3:3.8b
-    ollama pull 
+    ollama pull phi3:14b
+    ollama pull command-r:35b
+    ollama pull command-r-plus:104b
 
 Note: You may need to run as ./ollama pull gemma2:9b on Linux
 
@@ -65,6 +67,8 @@ To generate predictions:
     python main.py qwen2:72b
     python main.py phi3:3.8b
     python main.py phi3:14b
+    python main.py command-r:35b
+    python main.py command-r-plus:104b
 
 The output will be saved in the data folder.
 
