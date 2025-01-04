@@ -88,6 +88,9 @@ For real-time monitoring:
 To generate accuracy and F1 scores:
 
     python score_generator.py gemma2:9b
+    
+
+
 
 # Evaluating Accuracy of LLMs
 For a pilot experiment, I chose 1,000 samples for each category from a total pool of 21,152 PolitiFact claims to ensure equal representation. This approach helps us eliminate any bias that might arise from imbalanced data. If I had reflected on the actual distribution of claims, some categories might have been underrepresented, potentially skewing the results and affecting the reliability of our model comparisons. 
