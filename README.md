@@ -93,31 +93,68 @@ To generate accuracy and F1 scores:
 
 
 # Evaluating Accuracy of LLMs
-For a pilot experiment, I chose 1,000 samples for each category from a total pool of 21,152 PolitiFact claims to ensure equal representation. This approach helps us eliminate any bias that might arise from imbalanced data. If I had reflected on the actual distribution of claims, some categories might have been underrepresented, potentially skewing the results and affecting the reliability of our model comparisons. 
+For a pilot experiment, I chose 1,000 samples for each category from a total pool of [21,152 PolitiFact claims](https://www.kaggle.com/datasets/rmisra/PolitiFact-fact-check-dataset/data) to ensure equal representation. This approach helps us eliminate any bias that might arise from imbalanced data. If I had reflected on the actual distribution of claims, some categories might have been underrepresented, potentially skewing the results and affecting the reliability of our model comparisons. 
 In the preprocessing step, I eliminated instances where the models refused to respond.
 
 ## Models
-I selected 11 models from 6 different LLM families, as shown in  Table \ref{tab:models_llm}. This choice is informed by their open-source nature and their representation of the latest advancements in the field.
+I selected 11 models from 6 different LLM families, as shown in table. This choice is informed by their open-source nature and their representation of the latest advancements in the field.
 
 | **LLM Family** | **Parameter Count**                                                                                                 | **Provider**     | **Release Date**                                                                                                                                  |
 |-----------------|---------------------------------------------------------------------------------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Mixtral         | 8x7B [[1]](https://example.com/mistralaiteamMixtralExperts2023) / 8x22B [[2]](https://example.com/mistralaiteamCheaperBetterFaster2024) | Mistral AI       | 11/12/2023 [[1]](https://example.com/mistralaiteamMixtralExperts2023), 17/04/2024 [[2]](https://example.com/mistralaiteamCheaperBetterFaster2024) |
-| Command R       | 35B                                                                                                                | Cohere           | 11/03/2024 [[3]](https://example.com/gomezCommandRetrievalAugmentedGeneration2024)                                                              |
-| Llama 3         | 8B/70B                                                                                                            | Meta             | 18/04/2024 [[4]](https://example.com/metaIntroducingMetaLlama)                                                                                  |
-| Phi-3           | 8B/14B                                                                                                            | Microsoft        | 21/05/2024 [[5]](https://example.com/bilenkoIntroducingPhi3Redefining2024)                                                                      |
-| Qwen-2          | 7B/22B                                                                                                            | Alibaba Cloud    | 07/06/2024 [[6]](https://example.com/qwenteamHelloQwen22024)                                                                                    |
-| Gemma 2         | 9B/27B                                                                                                            | Google           | 27/06/2024 [[7]](https://example.com/farabetGemmaNowAvailable2024)                                                                              |
+| Mixtral         | 8x7B [[1]](https://mistral.ai/news/mixtral-of-experts/) / 8x22B [[2]](https://mistral.ai/news/mixtral-8x22b/) | Mistral AI       | 11/12/2023 [[1]](https://mistral.ai/news/mixtral-of-experts/), 17/04/2024 [[2]](https://mistral.ai/news/mixtral-8x22b/) |
+| Command R       | 35B                                                                                                                | Cohere           | 11/03/2024 [[3]](https://cohere.com/blog/command-r)                                                              |
+| Llama 3         | 8B/70B                                                                                                            | Meta             | 18/04/2024 [[4]](https://ai.meta.com/blog/meta-llama-3/)                                                                                  |
+| Phi-3           | 8B/14B                                                                                                            | Microsoft        | 21/05/2024 [[5]](https://azure.microsoft.cous/blog/introducing-phi-3-redefining-whats-possible-with-slms/)                                                                      |
+| Qwen-2          | 7B/22B                                                                                                            | Alibaba Cloud    | 07/06/2024 [[6]](http://qwenlm.github.io/blog/qwen2/)                                                                                    |
+| Gemma 2         | 9B/27B                                                                                                            | Google           | 27/06/2024 [[7]](https://blog.google/technology/developers/gemma-open-models/)                                                                              |
+
+*Table: The LLM families used in the study.*
 
 ---
 
-### References:
-1. [Mixtral Experts 2023](https://example.com/mistralaiteamMixtralExperts2023)
-2. [Cheaper Better Faster 2024](https://example.com/mistralaiteamCheaperBetterFaster2024)
-3. [Command Retrieval Augmented Generation 2024](https://example.com/gomezCommandRetrievalAugmentedGeneration2024)
-4. [Introducing Meta Llama](https://example.com/metaIntroducingMetaLlama)
-5. [Introducing Phi-3 Redefining](https://example.com/bilenkoIntroducingPhi3Redefining2024)
-6. [Hello Qwen-2 2024](https://example.com/qwenteamHelloQwen22024)
-7. [Gemma Now Available](https://example.com/farabetGemmaNowAvailable2024)
+## Prompting
 
+Text generation with LLMs depends significantly on the prompting methods employed. The prompts for this thesis were developed based on the outputs of Paper I. In this pilot experiment, a simple prompt was used to have LLMs fact-check a claim, aligning with previous studies (e.g., [Hoes et al. (2023)](https://doi.org/10.31234/osf.io/qnjkf), [Quelle and Bovet (2024)](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1341697/full)). This approach ensures the use of prompting methods likely to be used by the general public ([DeVerna et al., (2023)](https://doi.org/10.48550/arXiv.2308.10800), [Karinshak et al., (2023)](https://dl.acm.org/doi/10.1145/3579592)). Although more sophisticated prompting techniques exist and may enhance accuracy, they often require technical skills that are less commonly possessed by lay users.
+
+LLMs were instructed to annotate each statement (see **System Prompt** below). Six categories and their definitions from PolitiFact’s Truth-o-Meter ratings were used to ensure a straightforward comparison of ChatGPT’s findings with PolitiFact’s fact-checkers ([Drobnicholan, 2018](https://www.politifact.com/article/2018/feb/12/principles-truth-o-meter-politifacts-methodology-i/)). 
+
+The labels range from **TRUE** to **PANTS ON FIRE**, with intermediate categories such as **MOSTLY TRUE**, **HALF TRUE**, **MOSTLY FALSE**, and **FALSE**. Additionally, similar to previous studies ([Hoes et al. (2023)](https://doi.org/10.31234/osf.io/qnjkf), [Quelle and Bovet (2024)](https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1341697/full)), a new label, **INCONCLUSIVE**, was added to be used when a claim lacks sufficient context or there is not enough information to assess its veracity.
+
+---
+
+### System Prompt
+
+> **You are a fact-checking expert.** Evaluate the given statement and assign one of the following labels:
+>
+> - **TRUE** – The statement is accurate, and nothing significant is missing.
+> - **MOSTLY TRUE** – The statement is accurate but requires clarification or additional information.
+> - **HALF TRUE** – The statement is partially accurate but omits important details or takes things out of context.
+> - **MOSTLY FALSE** – The statement contains some truth but ignores critical facts that would provide a different impression.
+> - **FALSE** – The statement is not accurate.
+> - **PANTS ON FIRE** – The statement is not accurate and makes a ridiculous claim.
+> - **INCONCLUSIVE** – A clear decision cannot be made due to insufficient context or information.
+>
+> Provide the assigned `{label}` along with a detailed `{explanation}` supporting your assessment.
+
+---
+
+
+## Accuracy Metrics of LLMs on a Sample of PolitiFact Claims
+
+The graphs below show the accuracy metrics and parameter sizes of LLMs, each tested on 6,000 PolitiFact claims. 
+
+- The results for **multiclass categories** (see Figure 1) and **binary categories** (see Figure 2) indicate a general trend where larger models tend to achieve higher accuracy, though there are exceptions where smaller models outperform larger ones.
+- **Qwen2-72b** stands out with the highest accuracy and largest parameter size, while **Phi3-3.8b** has both the smallest parameter size and lowest accuracy.
+- Despite having a significantly larger parameter size, the performance of **Gemma2-27b** did not scale proportionally.
+
+---
+
+### Figures
+
+#### Figure 1: Model Performance (Multiclass)
+![Model performance: Parameter size vs accuracy metric (Multiclass)](figure/a_mc.png)
+
+#### Figure 2: Model Performance (Binary)
+![Model performance: Parameter size vs accuracy metric (Binary)](figure/a_b.png)
 
 
